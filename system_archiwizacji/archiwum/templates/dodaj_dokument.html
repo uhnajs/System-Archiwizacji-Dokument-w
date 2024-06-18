@@ -1,8 +1,8 @@
-<!-- archiwum/templates/archiwum/edytuj_dokument.html -->
+<!-- archiwum/templates/archiwum/dodaj_dokument.html -->
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>{{ form.instance.pk ? "Edytuj dokument" : "Dodaj nowy dokument" }}</h1>
+  <h1>Dodaj nowy dokument</h1>
   <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}

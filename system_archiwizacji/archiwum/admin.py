@@ -1,3 +1,6 @@
+# archiwum/admin.py
 from django.contrib import admin
+from .models import Dokument, HistoriaZmian
 
-# Register your models here.
+admin.site.register(Dokument)
+admin.site.register(HistoriaZmian)
