@@ -1,11 +1,88 @@
-<!-- archiwum/templates/archiwum/edytuj_dokument.html -->
 {% extends "base_generic.html" %}
 
 {% block content %}
   <h1 class="my-4">Edytuj dokument</h1>
-  <form method="post">
+  <form method="post" class="needs-validation" novalidate>
     {% csrf_token %}
-    {{ form.as_p }}
+    <div class="form-group">
+      {{ form.non_field_errors }}
+      <label for="id_tytul">Tytuł:</label>
+      {{ form.tytul }}
+    </div>
+    <div class="form-group">
+      <label for="id_rok">Rok:</label>
+      {{ form.rok }}
+    </div>
+    <div class="form-group">
+      <label for="id_kategoria">Kategoria:</label>
+      {{ form.kategoria }}
+    </div>
+    <div class="form-group">
+      <label for="id_miejsce_przechowywania">Miejsce przechowywania:</label>
+      {{ form.miejsce_przechowywania }}
+    </div>
+    <div class="form-group">
+      <label for="id_liczba_egz">Liczba egzemplarzy:</label>
+      {{ form.liczba_egz }}
+    </div>
     <button type="submit" class="btn btn-primary">Zapisz</button>
   </form>
+
+  <style>
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      font-weight: bold;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      border: 1px solid #ced4da;
+      border-radius: 0.25rem;
+    }
+    .form-control.is-invalid, .was-validated .form-control:invalid {
+      border-color: #dc3545;
+    }
+    .form-control.is-valid, .was-validated .form-control:valid {
+      border-color: #28a745;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+    }
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #004085;
+    }
+    .invalid-feedback {
+      display: none;
+      color: #dc3545;
+    }
+    .was-validated .form-control:invalid ~ .invalid-feedback {
+      display: block;
+    }
+  </style>
+
+  <script>
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        var forms = document.getElementsByClassName('needs-validation');
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+  </script>
 {% endblock %}

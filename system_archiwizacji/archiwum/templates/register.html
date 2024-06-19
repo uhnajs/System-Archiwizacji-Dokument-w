@@ -1,11 +1,88 @@
-<!-- archiwum/templates/archiwum/register.html -->
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Rejestracja</h1>
-  <form method="post">
+  <h1 class="my-4">Rejestracja</h1>
+  <form method="post" class="needs-validation" novalidate>
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Zarejestruj się</button>
+    <div class="form-group">
+      <label for="id_username">Username:</label>
+      {{ form.username }}
+      <div class="invalid-feedback">
+        Wymagane. 150 znaków lub mniej. Tylko litery, cyfry i @/./+/-/_.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="id_password1">Password:</label>
+      {{ form.password1 }}
+      <div class="invalid-feedback">
+        Hasło musi zawierać co najmniej 8 znaków i nie może być zbyt podobne do Twoich innych informacji osobistych.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="id_password2">Password confirmation:</label>
+      {{ form.password2 }}
+      <div class="invalid-feedback">
+        Wprowadź takie samo hasło jak wcześniej, aby weryfikować.
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Zarejestruj się</button>
   </form>
+
+  <style>
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      font-weight: bold;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      border: 1px solid #ced4da;
+      border-radius: 0.25rem;
+    }
+    .form-control.is-invalid, .was-validated .form-control:invalid {
+      border-color: #dc3545;
+    }
+    .form-control.is-valid, .was-validated .form-control:valid {
+      border-color: #28a745;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+    }
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #004085;
+    }
+    .invalid-feedback {
+      display: none;
+      color: #dc3545;
+    }
+    .was-validated .form-control:invalid ~ .invalid-feedback {
+      display: block;
+    }
+  </style>
+
+  <script>
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        var forms = document.getElementsByClassName('needs-validation');
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+  </script>
 {% endblock %}
