@@ -1,0 +1,11 @@
+<!-- archiwum/templates/archiwum/usun_dokument.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1 class="my-4">Czy na pewno chcesz usunąć ten dokument?</h1>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Usuń</button>
+    <a href="{% url 'lista_dokumentow' %}" class="btn btn-secondary">Anuluj</a>
+  </form>
+{% endblock %}

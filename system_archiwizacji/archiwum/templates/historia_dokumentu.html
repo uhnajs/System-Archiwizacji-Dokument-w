@@ -1,0 +1,16 @@
+<!-- archiwum/templates/archiwum/historia_dokumentu.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Historia zmian dokumentu: {{ dokument.tytul }}</h1>
+  <ul class="list-group mt-4">
+    {% for zmiana in historia %}
+      <li class="list-group-item">
+        <strong>{{ zmiana.data }}</strong>: {{ zmiana.opis }} przez {{ zmiana.uzytkownik.username }}
+      </li>
+    {% empty %}
+      <li class="list-group-item">Brak historii zmian dla tego dokumentu.</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'lista_dokumentow' %}" class="btn btn-primary mt-4">Powrót do listy dokumentów</a>
+{% endblock %}

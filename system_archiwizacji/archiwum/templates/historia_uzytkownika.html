@@ -1,0 +1,16 @@
+<!-- archiwum/templates/archiwum/historia_uzytkownika.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Historia zmian użytkownika: {{ uzytkownik.username }}</h1>
+  <ul class="list-group mt-4">
+    {% for zmiana in historia %}
+      <li class="list-group-item">
+        <strong>{{ zmiana.data }}</strong>: {{ zmiana.opis }} dotyczący dokumentu {{ zmiana.dokument.tytul }}
+      </li>
+    {% empty %}
+      <li class="list-group-item">Brak historii zmian dla tego użytkownika.</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'lista_uzytkownikow' %}" class="btn btn-primary mt-4">Powrót do listy użytkowników</a>
+{% endblock %}

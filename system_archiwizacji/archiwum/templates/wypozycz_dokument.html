@@ -1,0 +1,11 @@
+<!-- archiwum/templates/archiwum/wypozycz_dokument.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Wypożycz dokument: {{ dokument.tytul }}</h1>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">Wypożycz</button>
+    <a href="{% url 'lista_dokumentow' %}" class="btn btn-secondary">Anuluj</a>
+  </form>
+{% endblock %}

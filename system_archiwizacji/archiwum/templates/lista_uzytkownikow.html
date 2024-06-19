@@ -1,0 +1,14 @@
+<!-- archiwum/templates/archiwum/lista_uzytkownikow.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1 class="my-4">Lista Użytkowników</h1>
+  <ul class="list-group">
+    {% for uzytkownik in uzytkownicy %}
+      <li class="list-group-item">
+        {{ uzytkownik.username }} - {{ uzytkownik.email }}
+        <a href="{% url 'historia_uzytkownika' uzytkownik.pk %}" class="btn btn-sm btn-info float-right">Historia</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -2,10 +2,10 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>{{ form.instance.pk ? "Edytuj dokument" : "Dodaj nowy dokument" }}</h1>
-  <form method="POST">
+  <h1 class="my-4">Edytuj dokument</h1>
+  <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Zapisz</button>
+    <button type="submit" class="btn btn-primary">Zapisz</button>
   </form>
 {% endblock %}
